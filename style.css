@@ -1,0 +1,48 @@
+
+body{
+    margin:0%;
+}
+
+
+
+.navbar ul{
+    list-style-type: none;
+    background-color:hsl(227, 15%, 30%);
+    overflow: hidden;
+    padding:0px;
+}
+.navbar a{
+    text-decoration: none;
+    color: hsl(0, 0%, 91%);
+    margin: 0%;
+    text-align: center;
+    padding: 10px;
+    display: block;
+    float: left;
+}
+.navbar a:hover{
+    background-color:hsl(0, 0%, 54%);
+}
+.page{
+    background-color:hsl(227, 15%, 30%);
+    padding:3px;
+    text-align: center;
+    color: white;
+}
+footer{
+    text-align: center;
+    background-color: hsl(227, 15%, 30%);
+    color: whitesmoke;
+    padding: 10px;
+}
+main{
+    margin: 10px;
+}
+
+#logo{
+    transform: translateY(8px);
+    height: 150px;
+    margin: auto;
+    display: block
+   
+}
