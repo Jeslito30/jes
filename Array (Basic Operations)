@@ -1,0 +1,93 @@
+//package Array;
+public class Array {
+    private int[] array;
+    private int currentSize;
+    private int capacity;
+
+    
+    public Array(int initialCapacity) {
+        array = new int[initialCapacity];
+        capacity = initialCapacity;
+        currentSize = 0;
+    }
+    public void insert(int element) {
+        if (currentSize >= capacity) {
+            System.out.println("Array is full. Cannot insert new element.");
+            return;
+        }
+        array[currentSize++] = element;
+        System.out.println("Element: "+ element +", inserted successfully.");
+    }
+
+    public void deleteDataAtIndex(int index) {
+        if (index < 0 || index >= currentSize) {
+            System.out.println("Invalid index. Cannot delete element.");
+            return;
+        }
+        for (int i = index; i < currentSize - 1; i++) {
+            array[i] = array[i + 1];
+        }
+        currentSize--;
+        System.out.println("Element at index "+ index + " has been deleted successfully.");
+    }
+
+
+    public int search(int element) {
+        for (int i = 0; i < currentSize; i++) {
+            if (array[i] == element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    
+    public void update(int index, int newValue) {
+        if (index < 0 || index >= currentSize) {
+            System.out.println("Invalid index. Cannot update element.");
+            return;
+        }
+        array[index] = newValue;
+        System.out.println("Element updated successfully.");
+    }
+    public void display() {
+        if (currentSize == 0) {
+            System.out.println("Array is empty.");
+            return;
+        }
+        System.out.print("Array elements: ");
+        for (int i = 0; i < currentSize; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        Array list = new Array(5);
+        list.insert(0);
+        list.insert(1);
+        list.insert(2);
+        list.insert(3);
+        list.insert(4);
+        list.insert(5);
+
+        System.out.println();
+        list.display();
+
+        System.out.println();
+        list.deleteDataAtIndex(3);
+
+        System.out.println();
+        list.display();
+        list.deleteDataAtIndex(4);
+
+        System.out.println();
+        list.display();
+
+        System.out.println();
+        list.update(3, 3);
+
+        System.out.println();
+        list.display();
+        
+    }
+}
