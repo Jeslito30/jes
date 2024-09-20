@@ -1,4 +1,4 @@
-//package DSA;
+//package LinkedList;
 public class LinkedList{
     class Node{
         int intData;
@@ -81,20 +81,15 @@ public class LinkedList{
             System.out.println("List is empty.");
             return;
         }
-
-        // If the node to delete is the head
         if (head.intData == intData) {
             head = head.next;
             return;
         }
-
         Node current = head;
-        // Traverse to find the node before the one to delete
+        
         while (current.next != null && current.next.intData != intData) {
             current = current.next;
         }
-
-        // If the node is found, skip over it
         if (current.next != null) {
             current.next = current.next.next;
         } else {
@@ -123,9 +118,8 @@ public class LinkedList{
     }
     public String search(int intData) {
         Node current = head;
-        int index = 0;  // Starting position at 1
+        int index = 0;  
 
-        // Traverse through the list
         while (current != null) {
             if (current.intData == intData) {
                 return "Searching for: "+ "\""+ intData +"\"" +"\nStatus: In progress..... "+"\nSearch Complete"+"\nResult: The data was found, located at index " + index;
@@ -237,11 +231,6 @@ public class LinkedList{
 
 
 
-        
-
-
-
-
-
+    
     }
 }
