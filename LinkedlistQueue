@@ -1,0 +1,193 @@
+//package QUEUELINKEDLIST;
+
+public class LinkedlistQueue {
+    
+    
+    class Node {
+        int intData;
+        String stringData;
+        Node next;
+
+        Node(int intData) {
+            this.intData = intData;
+            this.next = null;
+        }
+        Node(String stringData) {
+            this.stringData = stringData;
+            this.next = null;
+        }
+    }
+    private Node front;
+    private Node rear;
+
+    public LinkedlistQueue() {
+        front = null;
+        rear = null;
+    }
+
+    public void enqueue(int value) {
+        Node newNode = new Node(value);
+        if (rear != null) {
+            rear.next = newNode;
+        }
+        rear = newNode;
+        if (front == null) {
+            front = newNode;
+        }
+        System.out.println("The data \""+value+"\" has been added");
+    }
+    public void enqueue(String value) {
+        Node newNode = new Node(value);
+        if (rear != null) {
+            rear.next = newNode;
+        }
+        rear = newNode;
+        if (front == null) {
+            front = newNode;
+        }
+        System.out.println("The data \""+value+"\" has been added");
+    }
+
+    public void dequeueIntQueue() {
+        if (front == null) {
+            System.out.println("Queue is empty, no data can be removed");
+        }
+        int dequeuedValue = front.intData;
+        front = front.next;
+        if (front == null) {
+            rear = null;
+        }
+        System.out.println("The data \""+dequeuedValue+"\" has been removed");
+    }
+    public void dequeueStringQueue() {
+        if (front == null) {
+            System.out.println("Queue is empty, no data can be removed");
+        }
+        String dequeuedValue = front.stringData;
+        front = front.next;
+        if (front == null) {
+            rear = null; 
+        }
+        System.out.println("The data \""+dequeuedValue+"\" has been removed");
+    }
+    public void isEmpty(){
+        if(front == null){
+            System.out.println("The queue is empty");
+        }else System.out.println("The queue is not empty");
+    }
+    public void peekAtFrontIntQueue() {
+        if (front == null) {
+            System.out.println("The queue is empty, no data at the front");
+            
+        }else System.out.println("The data on front is \""+ front.intData+"\"");
+        
+    }
+    public void peekAtFrontStringQueue() {
+        if (front == null) {
+            System.out.println("The queue is empty, no data at the front");
+            
+        }else System.out.println("The data on front is \""+ front.stringData+"\"");
+    }
+    public void peekAtRearStringQueue() {
+        if (rear == null) {
+            System.out.println("The queue is empty, no data at the front");
+            
+        }else System.out.println("The data on rear is \""+ rear.stringData+"\"");
+        
+    }public void peekAtRearIntQueue() {
+        if (rear == null) {
+            System.out.println("The queue is empty, no data at the front");
+            
+        }else System.out.println("The data on rear is \""+ rear.intData+"\"");
+        
+    }
+    public void displayIntQueue() {
+        Node current = front;
+        while (current != null) {
+            System.out.print(current.intData + " <-- ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+    public void displayStringQueue() {
+        Node current = front;
+        while (current != null) {
+            System.out.print(current.stringData + " <-- ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+            LinkedlistQueue brands = new LinkedlistQueue();
+            brands.enqueue("Nike");
+            brands.enqueue("Adidas");
+            brands.enqueue("Under Armour");
+            brands.enqueue("Converse");
+            brands.enqueue("Vans");
+            System.out.println();
+
+            brands.displayStringQueue();
+            brands.peekAtFrontStringQueue();
+            brands.peekAtRearStringQueue();
+            System.out.println();
+
+            brands.dequeueStringQueue();
+            brands.displayStringQueue();
+            System.out.println();
+
+            brands.dequeueStringQueue();
+            brands.displayStringQueue();
+            System.out.println();
+
+            brands.dequeueStringQueue();
+            brands.displayStringQueue();
+            System.out.println();
+
+            brands.peekAtFrontStringQueue();
+            brands.peekAtRearStringQueue();
+            brands.isEmpty();
+            System.out.println();
+
+            brands.dequeueStringQueue();
+            brands.displayStringQueue();
+            System.out.println();
+
+            brands.dequeueStringQueue();
+            brands.displayStringQueue();
+            System.out.println();
+            brands.isEmpty();
+            System.out.println();
+            System.out.println();
+
+
+            LinkedlistQueue data = new LinkedlistQueue();
+            data.isEmpty();
+            data.enqueue(0);
+            data.enqueue(1);
+            data.enqueue(2);
+            data.enqueue(3);
+            data.enqueue(4);
+            System.out.println();
+
+            data.displayIntQueue();
+            data.dequeueIntQueue();
+            data.peekAtFrontIntQueue();
+            data.peekAtRearIntQueue();
+            System.out.println();
+
+            data.displayIntQueue();
+            data.isEmpty();
+            data.dequeueIntQueue();
+            data.dequeueIntQueue();
+            data.dequeueIntQueue();
+            System.out.println();
+
+            data.displayIntQueue();
+            data.peekAtFrontIntQueue();
+            data.peekAtRearIntQueue();
+
+
+    }
+}
+
