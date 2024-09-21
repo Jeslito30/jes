@@ -1,0 +1,130 @@
+//package QUEUEARRAY;
+
+public class ArrayQueue {
+    private int maxSize;
+    private int[] queueArray;
+    private int front;
+    private int rear;
+    private int nItems;
+
+    public ArrayQueue(int size) {
+        maxSize = size;
+        queueArray = new int[maxSize];
+        front = 1;
+        rear = 0;
+        nItems = 0;
+    }
+
+    public void enqueue(int value) {
+        if (nItems != maxSize) {
+            rear = (rear + 1) % maxSize;
+            queueArray[rear] = value;
+            nItems++;
+            System.out.println("The data \""+value+"\" has been added");
+        } else {
+            System.out.println("Queue is full, no data can be added");
+        }
+    }
+
+    public void dequeue() {
+        if (nItems != 0) {
+            int dequeuedValue = queueArray[front];
+           
+            front = (front + 1) % maxSize;
+            nItems--;
+            System.out.println("The data \""+dequeuedValue+"\" has been removed");
+            
+        } else {
+            System.out.println("Queue is empty, no data can be removed");
+            
+        }
+    }
+    public void isEmpty(){
+        if(nItems == 0){
+            System.out.println("The queue is empty");
+        }else System.out.println("The queue is not empty");
+    }
+
+    public void isFull(){
+        if(nItems == maxSize){
+            System.out.println("The queue is full");
+        }else{
+            System.out.println("The queue is not full");
+        }
+    }
+
+    public void peekAtFront() {
+        if (nItems != 0) {
+            System.out.println("The data on front is \""+ queueArray[front]+"\"");
+        } else {
+            System.out.println("Queue is empty");
+            
+        }
+    }
+    public void peekAtRear() {
+        if (nItems != 0) {
+            System.out.println("The data on rear is \""+ queueArray[rear]+"\"");
+        } else {
+            System.out.println("Queue is empty");
+            
+        }
+    }
+    public void display() {
+        if (nItems != 0) {
+            for (int i = 0; i < nItems; i++) {
+            System.out.print(queueArray[(front + i) % maxSize] + " ");
+            }
+            System.out.println();
+        } else {
+            System.out.println("Queue is empty");
+        }
+    }
+
+
+    public static void main(String[] args) {
+        ArrayQueue data = new ArrayQueue(10);
+
+        data.enqueue(0);
+        data.enqueue(1);
+        data.enqueue(2);
+        data.enqueue(3);
+        data.enqueue(4);
+        data.enqueue(5);
+        data.enqueue(6);
+        data.enqueue(7);
+        data.enqueue(8);
+        data.enqueue(9);
+
+        System.out.println();
+        data.display();
+        data.peekAtFront();
+        data.peekAtRear();
+        data.isEmpty();
+        data.isFull();
+        System.out.println();
+
+        data.dequeue();
+        data.dequeue();
+        data.peekAtFront();
+        data.peekAtRear();
+        data.display();
+        data.isFull();
+        System.out.println();
+
+        data.dequeue();
+        data.dequeue();
+        data.dequeue();
+        data.dequeue();
+        System.out.println();
+
+        data.display();
+        data.peekAtFront();
+        data.peekAtRear();
+        data.dequeue();
+        data.dequeue();
+        data.dequeue();
+        data.dequeue();
+        data.dequeue();
+    }
+   
+}
