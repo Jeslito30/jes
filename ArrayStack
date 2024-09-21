@@ -1,0 +1,133 @@
+//package arraystack;
+class ArrayStack {
+    private int maxSize;
+    private int[] stackArray;
+    private int top;
+
+    public ArrayStack(int size) {
+        maxSize = size;
+        stackArray = new int[maxSize];
+        top = -1;
+    }
+    public void push(int value) {
+        if (top < maxSize - 1) {
+            top++;
+            stackArray[top] = value;
+            System.out.println("Data: "+ value +" has been added, and is now the new top");
+        } else {
+            System.out.println("Stack is full, can't add new data");
+        }
+    }
+    public int pop() {
+        if (top >= 0) {
+            System.out.println("The data has been pop!");
+            return stackArray[top--];
+        } else {
+            System.out.println("Yo can't do the operation \"pop\" because  the stack is empty");
+            return -1;
+        }
+    }
+    public String peek() {
+        if (top == -1) {
+            return "The stack is empty";
+        } else {
+            
+            return "The data at the top is "+ stackArray[top];
+        }
+    }
+    public void isEmpty() {
+        
+        if(top == -1){
+            System.out.println("The stack is empty");
+        }else{
+            System.out.println("The stack is not empty");
+        }
+    }
+    public void isFull() {
+        if(top==maxSize-1){
+            System.out.println("The stack is full");
+        }else{
+            System.out.println("Stack is not full");
+        }
+    }
+    public void display() {
+        if (top != -1) {
+            for (int i = top; i >= 0; i--) {
+                System.out.println(stackArray[i] + " ");
+            }
+            System.out.println();
+        } else {
+            System.out.println("The stack is empty");
+        }
+    }
+
+
+
+    public static void main(String[] args) {
+     
+        ArrayStack list = new ArrayStack(5);
+
+        list.push(0);
+
+        System.out.println();
+        list.display();
+        System.out.println();
+
+        list.push(1);
+
+        System.out.println();
+        list.display();
+        System.out.println();
+
+        list.push(2);
+        
+        System.out.println();
+        list.display();
+        System.out.println();
+
+        list.push(3);
+
+        System.out.println();
+        list.display();
+        System.out.println();
+
+        list.push(4);
+
+        System.out.println();
+        list.display();
+        System.out.println();
+
+        list.push(5);
+
+        System.out.println();
+        list.display();
+        list.isEmpty();
+
+        System.out.println();
+        list.pop();
+        list.display();
+
+        System.out.println();
+        list.pop();
+        list.display();
+
+        System.out.println();
+        list.pop();
+        list.display();
+        System.out.println(list.peek());
+
+        System.out.println();
+        list.pop();
+        list.display();
+
+        System.out.println();
+        list.pop();
+        list.display();
+
+        System.out.println();
+        list.pop();
+        
+        
+
+    }    
+}
