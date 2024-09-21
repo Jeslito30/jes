@@ -20,7 +20,7 @@ class ArrayStack {
     }
     public int pop() {
         if (top >= 0) {
-            System.out.println("The data has been pop!");
+            System.out.println("The data \""+top+"\" has been pop!");
             return stackArray[top--];
         } else {
             System.out.println("Yo can't do the operation \"pop\" because  the stack is empty");
