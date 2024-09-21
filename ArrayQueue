@@ -1,4 +1,4 @@
-package QUEUEARRAY;
+//package QUEUEARRAY;
 
 public class ArrayQueue {
     private int maxSize;
