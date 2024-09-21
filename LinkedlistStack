@@ -1,0 +1,158 @@
+//package STACKLINKEDLIST;
+
+
+
+class LinkedListStack {
+    class Node {
+        int intData;
+        String stringData;
+        Node next;
+    
+         Node(int intData) {
+            this.intData = intData;
+            this.next = null;
+        }
+         Node(String stringData) {
+            this.stringData = stringData;
+            this.next = null;
+        }
+    }
+    private Node top;
+
+    public LinkedListStack() {
+        top = null;
+    }
+    public void push(int value) {
+        Node newNode = new Node(value);
+        newNode.next = top;
+        top = newNode;
+        System.out.println("The data \""+value+"\" is being added");
+    }
+    public void push(String value) {
+        Node newNode = new Node(value);
+        newNode.next = top;
+        top = newNode;
+        System.out.println("The data \""+value+"\" is being added");
+    }
+
+    public void popIntData() {
+        if (top != null) {
+            int poppedValue = top.intData;
+            top = top.next;
+            System.out.println("The data \""+poppedValue + "\" has been removed");
+        } else {
+            System.out.println("Stack is empty");
+        }
+    }
+    public void popStringData() {
+        if (top != null) {
+            String poppedValue = top.stringData;
+            top = top.next;
+            System.out.println("The data \""+poppedValue + "\" has been removed");
+        } else {
+            System.out.println("Stack is empty");
+        }
+    }
+    public void isEmpty(){
+        if(top == null){
+            System.out.println("Stack is empty");
+        }else System.out.println("Stack is not empty");
+    }
+
+    public void peekAtIntStack() {
+        if (top != null) {
+            System.out.println("The data \""+ top.intData + "\" is the top" );
+        } else {
+            System.out.println("Stack is empty");
+            
+        }
+    }
+    public void peekAtStringStack() {
+        if (top != null) {
+            System.out.println("The data \""+ top.stringData + "\" is the top" );
+        } else {
+            System.out.println("Stack is empty");
+            
+        }
+    }
+    public void displayIntStack() {
+        Node current = top;
+        if (current == null) {
+            System.out.println("Stack is empty");
+            return;
+        }
+        while (current != null) {
+            System.out.println(current.intData + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+    public void displayStringStack() {
+        Node current = top;
+        if (current == null) {
+            System.out.println("Stack is empty");
+            return;
+        }
+        while (current != null) {
+            System.out.println(current.stringData + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+
+
+    public static void main(String[] args) {
+        LinkedListStack brands = new LinkedListStack();
+        brands.push("Yamaha"); 
+        brands.push("Bugatti");   
+        brands.push("Tesla");   
+        brands.push("Honda");   
+        brands.push("Dior");   
+        brands.push("Nike"); 
+        
+        System.out.println();
+        brands.displayStringStack();
+        System.out.println();
+
+        brands.popStringData();
+        System.out.println();
+
+        brands.displayStringStack();
+
+        System.out.println();
+        brands.popStringData();
+        brands.popStringData();
+        brands.popStringData();
+        
+        System.out.println();
+        brands.peekAtStringStack();
+
+        System.out.println();
+        brands.displayStringStack();
+
+        brands.isEmpty();
+        System.out.println();
+        System.out.println();
+
+
+        LinkedListStack data = new LinkedListStack();
+        data.push(45); 
+        data.push(56);   
+        data.push(78);   
+        data.push(9);   
+        data.push(4);   
+        data.push(26);
+
+        System.out.println();
+        data.popIntData();
+        data.popIntData();
+        data.popIntData();
+        data.popIntData();
+
+        System.out.println();
+        data.peekAtIntStack();
+        
+        data.displayIntStack();
+    }
+    
+}
