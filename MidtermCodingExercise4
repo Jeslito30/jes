@@ -1,1 +1,183 @@
 
+import java.util.*;
+
+public class GraphProgram {
+
+    private static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        System.out.println("Welcome to the Graph Program!");
+        System.out.println("Select Graph Representation:");
+        System.out.println("1. Adjacency Matrix");
+        System.out.println("2. Adjacency List");
+        System.out.print("Enter your choice (1 or 2): ");
+        
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1 -> adjacencyMatrixMenu();
+            case 2 -> adjacencyListMenu();
+            default -> System.out.println("Invalid choice.");
+        }
+    }
+
+    // Adjacency Matrix Representation
+    private static void adjacencyMatrixMenu() {
+        System.out.print("Enter number of vertices: ");
+        int vertices = scanner.nextInt();
+        GraphMatrix graph = new GraphMatrix(vertices);
+
+        System.out.print("Enter number of edges: ");
+        int edges = scanner.nextInt();
+        System.out.println("Enter each edge as 'source destination' (0-based index): ");
+        for (int i = 0; i < edges; i++) {
+            int source = scanner.nextInt();
+            int destination = scanner.nextInt();
+            graph.addEdge(source, destination);
+        }
+
+        performTraversals(graph);
+    }
+
+    // Adjacency List Representation
+    private static void adjacencyListMenu() {
+        System.out.print("Enter number of vertices: ");
+        int vertices = scanner.nextInt();
+        GraphList graph = new GraphList(vertices);
+
+        System.out.print("Enter number of edges: ");
+        int edges = scanner.nextInt();
+        System.out.println("Enter each edge as 'source destination' (0-based index): ");
+        for (int i = 0; i < edges; i++) {
+            int source = scanner.nextInt();
+            int destination = scanner.nextInt();
+            graph.addEdge(source, destination);
+        }
+
+        performTraversals(graph);
+    }
+
+    private static void performTraversals(Graph graph) {
+        System.out.print("Enter starting vertex for traversals: ");
+        int startVertex = scanner.nextInt();
+
+        System.out.println("DFS Traversal:");
+        graph.dfs(startVertex);
+
+        System.out.println("\nBFS Traversal:");
+        graph.bfs(startVertex);
+    }
+
+    // Graph Interface
+    interface Graph {
+        void addEdge(int source, int destination);
+        void dfs(int startVertex);
+        void bfs(int startVertex);
+    }
+
+    // Adjacency Matrix Graph Implementation
+    static class GraphMatrix implements Graph {
+        private int vertices;
+        private int[][] matrix;
+
+        public GraphMatrix(int vertices) {
+            this.vertices = vertices;
+            matrix = new int[vertices][vertices];
+        }
+
+        @Override
+        public void addEdge(int source, int destination) {
+            matrix[source][destination] = 1;
+            matrix[destination][source] = 1; // Undirected graph
+        }
+
+        @Override
+        public void dfs(int startVertex) {
+            boolean[] visited = new boolean[vertices];
+            dfsRecursive(startVertex, visited);
+        }
+
+        private void dfsRecursive(int vertex, boolean[] visited) {
+            visited[vertex] = true;
+            System.out.print(vertex + " ");
+            for (int i = 0; i < vertices; i++) {
+                if (matrix[vertex][i] == 1 && !visited[i]) {
+                    dfsRecursive(i, visited);
+                }
+            }
+        }
+
+        @Override
+        public void bfs(int startVertex) {
+            boolean[] visited = new boolean[vertices];
+            Queue<Integer> queue = new LinkedList<>();
+            visited[startVertex] = true;
+            queue.add(startVertex);
+
+            while (!queue.isEmpty()) {
+                int vertex = queue.poll();
+                System.out.print(vertex + " ");
+                for (int i = 0; i < vertices; i++) {
+                    if (matrix[vertex][i] == 1 && !visited[i]) {
+                        visited[i] = true;
+                        queue.add(i);
+                    }
+                }
+            }
+        }
+    }
+
+    // Adjacency List Graph Implementation
+    static class GraphList implements Graph {
+        private int vertices;
+        private LinkedList<Integer>[] adjList;
+
+        public GraphList(int vertices) {
+            this.vertices = vertices;
+            adjList = new LinkedList[vertices];
+            for (int i = 0; i < vertices; i++) {
+                adjList[i] = new LinkedList<>();
+            }
+        }
+
+        @Override
+        public void addEdge(int source, int destination) {
+            adjList[source].add(destination);
+            adjList[destination].add(source); // Undirected graph
+        }
+
+        @Override
+        public void dfs(int startVertex) {
+            boolean[] visited = new boolean[vertices];
+            dfsRecursive(startVertex, visited);
+        }
+
+        private void dfsRecursive(int vertex, boolean[] visited) {
+            visited[vertex] = true;
+            System.out.print(vertex + " ");
+            for (int adj : adjList[vertex]) {
+                if (!visited[adj]) {
+                    dfsRecursive(adj, visited);
+                }
+            }
+        }
+
+        @Override
+        public void bfs(int startVertex) {
+            boolean[] visited = new boolean[vertices];
+            Queue<Integer> queue = new LinkedList<>();
+            visited[startVertex] = true;
+            queue.add(startVertex);
+
+            while (!queue.isEmpty()) {
+                int vertex = queue.poll();
+                System.out.print(vertex + " ");
+                for (int adj : adjList[vertex]) {
+                    if (!visited[adj]) {
+                        visited[adj] = true;
+                        queue.add(adj);
+                    }
+                }
+            }
+        }
+    }
+}
